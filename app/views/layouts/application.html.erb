@@ -11,6 +11,19 @@
 
   <body>
 
+  <% 
+    require 'httparty'
+    require 'json'
+
+    response = HTTParty.get("https://6ac89029505ca7dd807aa45c0667d63f:3abcb320b5c60e619e97bc0585c9eab1@examplestorepm.myshopify.com/admin/api/2020-01/products.json", headers: {'X-Shopify-Access-Token' => "3abcb320b5c60e619e97bc0585c9eab1"})
+
+    responseParse = JSON.parse(response.body)
+
+    myData = responseParse["products"][0]["title"]
+  %>
+
+  <h1> <%= myData %> </h1>
+
   <%= link_to "Home", root_path %>
   <%= link_to "New Post", new_post_path %>
 
